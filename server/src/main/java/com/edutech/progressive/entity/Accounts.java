@@ -1,6 +1,6 @@
 package com.edutech.progressive.entity;
 
-public class Accounts {
+public class Accounts implements Comparable<Accounts>{
 
     private int accountId;
     private int customerId;
@@ -37,6 +37,11 @@ public class Accounts {
 
     public void setBalance(double balance) {
         this.balance = balance;
+    }
+
+    @Override
+    public int compareTo(Accounts otherAccounts) {
+        return Double.compare(this.balance, otherAccounts.getBalance());
     }
 
 }
