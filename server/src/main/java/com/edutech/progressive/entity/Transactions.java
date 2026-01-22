@@ -1,15 +1,23 @@
 package com.edutech.progressive.entity;
+
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
 public class Transactions {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int transactionId;
-    private int accountId;
+    //@ManyToOne
+    //@JoinColumn(name = "accountId")
+    private int accountId;;
     private double amount;
     private String transactionType;
     private Date transactionDate;
 
     public Transactions() {
+        //
     }
 
     public Transactions(int transactionId, int accountId, double amount, Date transactionDate, String transactionType) {
