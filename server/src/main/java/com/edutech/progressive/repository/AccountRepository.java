@@ -12,11 +12,11 @@ import java.util.List;
 @Repository
 public interface AccountRepository extends JpaRepository<Accounts, Integer> {
 
-    // List<Accounts> getAccountsByCustomerCustomerId(int customerId);
-    // Accounts findByAccountId(int accountId);
+    List<Accounts> getAccountsByCustomerCustomerId(int customerId);
+    Accounts findByAccountId(int accountId);
 
-    // @Modifying
-    // @Transactional
-    // @Query("DELETE FROM Accounts acc WHERE acc.customer.customerId = :customerId")
-    // void deleteByCustomerId(@Param("customerId") int customerId);
+    @Modifying
+    @Transactional
+    @Query("DELETE FROM Accounts acc WHERE acc.customer.customerId = :customerId")
+    void deleteByCustomerId(@Param("customerId") int customerId);
 }

@@ -25,52 +25,52 @@ public class AccountServiceImplJpa implements AccountService {
 
     @Override
     public List<Accounts> getAllAccounts() throws SQLException {
-        //return accountRepository.findAll();
-        return null;
+        return accountRepository.findAll();
+        // return null;
     }
 
     @Override
     public List<Accounts> getAccountsByUser(int customerId) throws SQLException {
-        //return accountRepository.getAccountsByCustomerCustomerId(customerId);
-        return null;
+        return accountRepository.getAccountsByCustomerCustomerId(customerId);
+        // return null;
     }
 
    
 
  @Override
     public Accounts getAccountById(int accountId) {
-        // Optional<Accounts> accounts = accountRepository.findById(accountId);
-        // if (accounts.isPresent()) {
-        //     return accounts.get();
-        // }
-        // else {
-        //     throw new AccountNotFoundException("No accounts found linked with this accountId : " + accountId);
-        // }
-        return null;
+        Optional<Accounts> accounts = accountRepository.findById(accountId);
+        if (accounts.isPresent()) {
+            return accounts.get();
+        }
+        else {
+            throw new AccountNotFoundException("No accounts found linked with this accountId : " + accountId);
+        }
+        // return null;
     }
 
     @Override
     public int addAccount(Accounts accounts) {
-        //return accountRepository.save(accounts).getAccountId();
-        return -1;
+        return accountRepository.save(accounts).getAccountId();
+        // return -1;
     }
 
     @Override
     public void updateAccount(Accounts accounts) {
-        //accountRepository.save(accounts);
+        accountRepository.save(accounts);
     }
 
     @Override
     public void deleteAccount(int accountId) {
         // transactionRepository.deleteByAccountId(accountId);
-        // accountRepository.deleteById(accountId);
+        accountRepository.deleteById(accountId);
     }
 
     @Override
     public List<Accounts> getAllAccountsSortedByBalance() throws SQLException {
-        // List<Accounts> sortedAccounts = getAllAccounts();
-        // sortedAccounts.sort(Comparator.comparingDouble(Accounts::getBalance)); // Sort by account balance
-        // return sortedAccounts;
-        return null;
+        List<Accounts> sortedAccounts = getAllAccounts();
+        sortedAccounts.sort(Comparator.comparingDouble(Accounts::getBalance)); // Sort by account balance
+        return sortedAccounts;
+        // return null;
     }
 }
