@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface TransactionRepository extends JpaRepository<Transactions, Integer> {
 
-    // List<Transactions> findByAccountsAccountId(int accountId);
+    List<Transactions> findByAccountsAccountId(int accountId);
 
     // @Modifying
     // @Transactional
