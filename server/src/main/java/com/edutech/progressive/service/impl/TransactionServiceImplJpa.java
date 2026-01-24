@@ -44,22 +44,22 @@ public class TransactionServiceImplJpa implements TransactionService {
 
     @Override
     public int addTransaction(Transactions transaction) throws SQLException {
-        // Accounts account = accountRepository.findByAccountId(transaction.getAccountId());
-        // double balance = account.getBalance();
-        // if (transaction.getAmount() > 30000 && transaction.getTransactionType().equalsIgnoreCase("debit")) {
-        //     throw new WithdrawalLimitException("Exceeded the withdrawal limit.");
-        // }
-        // if (balance < transaction.getAmount() && transaction.getTransactionType().equalsIgnoreCase("debit")) {
-        //     throw new OutOfBalanceException("Transaction amount exceeds the total balance available in the account.");
-        // }
-        // if (transaction.getTransactionType().equalsIgnoreCase("credit")) {
-        //     balance = balance + transaction.getAmount();
-        // }
-        // else {
-        //     balance = balance - transaction.getAmount();
-        // }
-        // account.setBalance(balance);
-        // accountRepository.save(account);
+        Accounts account = accountRepository.findByAccountId(transaction.getAccounts().getAccountId());
+        double balance = account.getBalance();
+        if (transaction.getAmount() > 30000 && transaction.getTransactionType().equalsIgnoreCase("debit")) {
+            throw new WithdrawalLimitException("Exceeded the withdrawal limit.");
+        }
+        if (balance < transaction.getAmount() && transaction.getTransactionType().equalsIgnoreCase("debit")) {
+            throw new OutOfBalanceException("Transaction amount exceeds the total balance available in the account.");
+        }
+        if (transaction.getTransactionType().equalsIgnoreCase("credit")) {
+            balance = balance + transaction.getAmount();
+        }
+        else {
+            balance = balance - transaction.getAmount();
+        }
+        account.setBalance(balance);
+        accountRepository.save(account);
         return transactionRepository.save(transaction).getTransactionId();
         // return -1;
         
