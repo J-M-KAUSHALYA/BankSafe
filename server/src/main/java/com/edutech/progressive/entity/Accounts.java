@@ -79,7 +79,7 @@ public class Accounts implements Comparable<Accounts> {
         this.balance=balance;
     }
 
-    // Getters and setters
+    //Getters Setters
     public int getAccountId() {
         return accountId;
     }
